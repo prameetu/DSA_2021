@@ -1,5 +1,4 @@
-//Height of Binary tree
-
+//Conting number of leaf nodes
 
 #include<bits/stdc++.h>
 
@@ -23,21 +22,22 @@ Node * create_node(int data)
     return new_node;
 }
 
-int height(Node *temp)
+int count_leaf_nodes(Node *temp)
 {
     int x,y;
+
     if(temp)
     {
-        x = height(temp->left);
-        y = height(temp->right);
-        if(x>y)
-            return x+1;
+        x = count_leaf_nodes(temp->left);
+        y = count_leaf_nodes(temp->right);
+
+        if(!temp->left && !temp->right)
+            return x+y+1;
         else
-            return y+1;
+            return x+y;
     }
 
-    return 0; // thois can be return -1 also depending on the fact just root node is taken at level 0 or level 1
-
+    return 0;
 }
 
 int main()
@@ -52,5 +52,5 @@ int main()
     root->right->left = create_node(9);
 
 
-    cout << height(root);
+    cout << count_leaf_nodes(root);
 }
