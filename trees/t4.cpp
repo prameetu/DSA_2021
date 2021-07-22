@@ -1,4 +1,4 @@
-//Counting number of nodes in the binary tree
+//Counting number of nodes with degree 2
 
 #include<bits/stdc++.h>
 
@@ -22,7 +22,7 @@ Node * create_node(int data)
     return new_node;
 }
 
-int count_nodes_iter(Node * temp)
+int count_nodes_degree_2_iter(Node * temp)
 {
     if(!temp)
         return 0;
@@ -36,7 +36,8 @@ int count_nodes_iter(Node * temp)
     {
         Node * temp = q.front();
         q.pop();
-        cnt++;
+        if(temp->left && temp->right)
+            cnt++;
 
         if(temp->left)
             q.push(temp->left);
@@ -49,20 +50,22 @@ int count_nodes_iter(Node * temp)
 
 }
 
-int count_nodes(Node * temp)
+int count_nodes_degree_2(Node * temp)
 {
     int x,y;
 
-    if(temp){
-        x = count_nodes(temp->left);
-        y = count_nodes(temp->right);
+    if(temp)
+    {
+        x = count_nodes_degree_2(temp->left);
+        y = count_nodes_degree_2(temp->right);
 
-        return x + y + 1; 
+        if(temp->left && temp->right)
+            return x+y+1;
+        else
+            return x+y;
     }
-
     return 0;
 }
-
 
 int main()
 {
@@ -73,8 +76,8 @@ int main()
     root->left->right->left = create_node(1);
     root->left->right->right = create_node(11);
     root->right->right = create_node(9);
-    root->right->right->left = create_node(9);
+    root->right->left = create_node(9);
 
 
-    cout << count_nodes(root);
+    cout << count_nodes_degree_2(root);
 }
