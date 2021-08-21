@@ -28,6 +28,7 @@ void max_profit(vector <pair<int,int>> jobs,int num_of_slots){
             }
         }
     }
+    
 
     // printing the max profit and the job sequnce 
 
