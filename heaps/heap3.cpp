@@ -3,7 +3,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-class Max_Heap{
+class Min_heap{
     int *arr;
     int max_size;
     int heap_size;
@@ -26,7 +26,7 @@ class Max_Heap{
             *y = temp; 
         }
         
-        Max_Heap(int max_size)
+        Min_heap(int max_size)
         {
             heap_size = 0;
             max_size = max_size;
@@ -43,7 +43,7 @@ class Max_Heap{
             int i(heap_size-1);
             arr[i] = k;
 
-            while(i>0 && (arr[i] > arr[parent(i)])){
+            while(i>0 && (arr[i] < arr[parent(i)])){
                 swap(&arr[i],&arr[parent(i)]);
                 i = parent(i);
             }
@@ -61,10 +61,10 @@ class Max_Heap{
                 return arr[0];
             }
 
-            int max = arr[0];
+            int min = arr[0];
             int x(arr[heap_size-1]);
             arr[0] = x;
-            arr[heap_size-1] = max;
+            arr[heap_size-1] = min;
             int i(0),j(left_child(i));
             heap_size--;
 
@@ -86,7 +86,7 @@ class Max_Heap{
                     break;
             }
 
-            return max;
+            return min;
         }
 
         void display_heap_array_form()
@@ -103,7 +103,7 @@ class Max_Heap{
 
 int main()
 {
-    Max_Heap heap(10);
+    Min_heap heap(10);
     heap.insert_key(20);
     heap.insert_key(9);
     heap.insert_key(10);
