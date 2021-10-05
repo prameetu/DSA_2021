@@ -1,4 +1,4 @@
-//DFS TRAVERSAL
+//CYCLE DETECTION USING BFS TRAVERSAL
 #include <bits/stdc++.h>
 
 using namespace std;
