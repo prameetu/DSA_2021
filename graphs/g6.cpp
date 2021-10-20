@@ -9,9 +9,9 @@ bool helper(int i,vector <int> &vis,vector <vector <int>> adj,int prev)
     for(auto it:adj[i])
     {
         if(!vis[it])
-            if(helper(it,vis,adj,it))
+            if(helper(it,vis,adj,i))
                 return true;
-        else if(prev != it)
+        else if(prev != it) 
             return true;
     }
 }
